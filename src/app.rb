@@ -9,15 +9,17 @@ require 'monitor'
 set :server, 'webrick'
 set :port, 4567
 set :bind, '0.0.0.0'
+set :ttl_cache, ENV.fetch('LOCAL_CACHE_DEFAULT_TIMEOUT', '20').to_i
 
 # ==================== CACHE SIMPLES ====================
 class SimpleCache
   include MonitorMixin
   
-  def initialize(ttl_seconds = 10)
+  def initialize(ttl_seconds = settings.ttl_cache)
     super()
     @cache = {}
     @ttl = ttl_seconds
+    
   end
   
   def get(key)
@@ -60,7 +62,7 @@ class SimpleCache
 end
 
 # Inicializa o cache com 10 segundos
-$cache = SimpleCache.new(10)
+$cache = SimpleCache.new(settings.ttl_cache)
 
 # Helper para cachear respostas
 def cached_response(&block)

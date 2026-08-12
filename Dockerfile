@@ -22,6 +22,11 @@ COPY src/ .
 
 # Expõe a porta que a aplicação vai usar
 EXPOSE 4567
+ARG SINATRA_LOCAL_CACHE_DEFAULT_TIMEOUT
+ARG CODE_ENV
+ENV LOCAL_CACHE_DEFAULT_TIMEOUT=$SINATRA_LOCAL_CACHE_DEFAULT_TIMEOUT
+ENV CODE_ENV=$CODE_ENV
+
 
 # Comando para iniciar a aplicação
 CMD ["ruby", "app.rb"]
