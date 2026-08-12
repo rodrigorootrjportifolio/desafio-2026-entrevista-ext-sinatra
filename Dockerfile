@@ -6,7 +6,7 @@ COPY Gemfile Gemfile.lock* ./
 
 RUN bundle install
 
-COPY app.rb .
+COPY src/app.rb .
 
 EXPOSE 4567
 
