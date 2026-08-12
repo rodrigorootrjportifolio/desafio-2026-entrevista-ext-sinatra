@@ -8,14 +8,14 @@ RELEASE=
 build:
 	@docker build -t ${TAG} .
 run:
-	@docker run -it -p 8300:5000 ${TAG}
+	@docker run -it -p 8400:4567 ${TAG}
 shell:
-	@docker run -it -it -p 8342:5000 --mount type=bind,source=${DIR}/src,target=/app  --entrypoint /bin/sh  ${RELEASE}
+	@docker run -it -p 8442:4567 --mount type=bind,source=${DIR}/src,target=/app  --entrypoint /bin/bash  ${TAG}
 echo:
 	@echo ${TAG}	
 push:
 	@docker push ${TAG}	
 shell-release:
-	@docker run -it -it -p 8342:5000 --entrypoint /bin/sh  ${RELEASE}
+	@docker run -it -p 8442:4567 --entrypoint /bin/sh  ${RELEASE}
 rmi:
 	@docker rmi --force ${RELEASE}	
