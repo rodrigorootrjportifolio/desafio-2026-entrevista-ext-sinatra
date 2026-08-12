@@ -81,7 +81,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_PROJETO }}-${{ env.DOCKER_TAG }}:${{ env.RELEASE }}
+            ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_PROJETO }}-${{ env.DOCKER_TAG }}:${{ env.RELEASE }}
           build-args: |
             CODE_ENV=${{ env.ENV_NAME }}
             FLASK_LOCAL_CACHE_DEFAULT_TIMEOUT=${{ vars.FLASK_LOCAL_CACHE_DEFAULT_TIMEOUT }}
